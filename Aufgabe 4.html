@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Entwicklungsaufgaben</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/vorlage1.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Google Maps</h1>
+    </div>
+
+    <div class="topnav">
+        <a href="Aufgabe 1.html">Aufgabe 1</a>
+        <a href="Aufgabe 2.html">Aufgabe 2</a>
+        <a href="Aufgabe 3.html">Aufgabe 3</a>
+        <a href="Aufgabe 4.html">Aufgabe 4</a>
+        <a href="Aufgabe 5.html">Aufgabe 5</a>
+    </div>
+
+    <div id="googlemap" style="width: 100%; height: 400px;">
+        <script>
+            var locations = [
+                ['Bingen', 49.9667396, 7.904596, , 1],
+                ['Kempten', 47.726663, 10.316661, 2],
+                ['Trondtheim', 63.430515, 10.395053, 3],
+                ['Rom', 41.902783, 12.496366, 4],
+                ['Toronto', 43.653226, -79.383184, 5],
+            ];
+
+            function initMap() {
+                var myLatLng = {
+                    lat: 49,
+                    lng: 8
+                };
+                var map = new google.maps.Map(document.getElementById('googlemap'), {
+                    zoom: 3,
+                    center: myLatLng
+                });
+                var count = 0;
+                for (count = 0; count < locations.length; count++) {
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[count][1], locations[count][2], locations[count][3], locations[count][4], locations[count][5]),
+                        map: map
+                    });
+                    marker.info = new google.maps.InfoWindow({
+                        content: locations[count][0]
+                    });
+                    google.maps.event.addListener(marker, 'click', function() {
+                        var marker_map = this.getMap();
+                        this.info.open(marker_map, this);
+                    });
+                }
+            }
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDti4G7ww9LCritoOg4AajPiWfYBXCqi8&callback=initMap">
+        </script>
+    </div>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js "></script>
+</body>
+
+</html>
